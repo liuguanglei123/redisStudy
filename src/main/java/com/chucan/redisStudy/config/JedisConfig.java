@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 /**
  * @Author: Yeman
@@ -22,8 +23,13 @@ public class JedisConfig {
 
     @Bean
     public Jedis client(){
-        System.out.println("create jedis object");
         Jedis jedis = new Jedis(host, port);
         return jedis;
+    }
+
+    @Bean
+    public JedisPool jedisPool(){
+        JedisPool jedisPool = new JedisPool(host, port);
+        return jedisPool;
     }
 }
